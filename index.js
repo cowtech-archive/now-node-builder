@@ -23,7 +23,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   let launcherData = await readFile(path.join(__dirname, 'launcher.js'), 'utf8')
   launcherData = launcherData.replace(
     '// PLACEHOLDER',
-    `process.chdir(\`\${process.cwd()}/user\`); require('${entrypoint)}');`
+    `process.chdir(\`\${process.cwd()}/user\`); require('${entrypoint}');`
   )
 
   const launcherFiles = {
