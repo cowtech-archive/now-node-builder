@@ -1,6 +1,6 @@
 {
   "name": "@cowtech/now-node-server",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "CowTech Now v2 Node.js server builder.",
   "main": "index,js",
   "files": [
