@@ -37,7 +37,6 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   }
 
   // Create the Lambda
-  console.log(Object.keys(filesOnDisk))
   const lambda = await createLambda({
     files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
