@@ -13,17 +13,20 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   // Download files
   console.log('downloading user files...')
   const userPath = path.join(workPath, 'user')
-  const filesOnDisk = await download(files, userPath)
+  const downloadedFiles = await download(files, userPath)
+
+  // Add user prefix to all sources
+  const filesOnDisk = {}
+  for (const [fPath, contents] of Object.entries(downloadedFiles)) filesOnDisk[`user/${fPath}`] = contents
 
   // Install NPM
   console.log('Installing dependencies ...')
   await runNpmInstall(path.join(userPath, path.dirname(entrypoint)))
 
   // Create the launcher
-  let launcherData = await readFile(path.join(__dirname, 'launcher.js'), 'utf8')
-  launcherData = launcherData.replace(
-    '// PLACEHOLDER',
-    `const fs = require('fs'); console.log(process.cwd()); console.log(fs.readdirSync(process.cwd())); process.chdir(\`\${process.cwd()}/user\`); require('${entrypoint}');`
+  const launcherData = (await readFile(path.join(__dirname, 'launcher.js'), 'utf8')).replace(
+    '/** ENTRYPOINT **/',
+    entrypoint
   )
 
   const launcherFiles = {
@@ -31,7 +34,6 @@ exports.build = async ({ files, entrypoint, workPath }) => {
     'bridge.js': new FileFsRef({ fsPath: require('@now/node-bridge') })
   }
 
-  console.log(Object.keys(filesOnDisk))
   const lambda = await createLambda({
     files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
