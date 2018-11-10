@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.14
+
+* test: Improve launcher.
+
 ### 2018-11-10 / 0.1.13
 
 * test: Improve launcher.
