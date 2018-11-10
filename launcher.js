@@ -14,5 +14,5 @@ try {
   bridge.userError = error
 }
 
-bridge.port = parseInt(process.env.PORT!, 0)
+bridge.port = parseInt(process.env.PORT, 0)
 exports.launcher = bridge.launcher
