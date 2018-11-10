@@ -19,7 +19,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
 
   // Install NPM dependencies
   console.log('Installing dependencies ...')
-  await runNpmInstall(userRoot)
+  await runNpmInstall(userRoot, ['--production'])
 
   // Add user prefix to all sources and dependencies
   const filesOnDisk = {}
