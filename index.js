@@ -21,7 +21,9 @@ exports.build = async ({ files, entrypoint, workPath }) => {
 
   // Install NPM
   console.log('Installing dependencies ...')
-  await runNpmInstall(path.join(userPath, path.dirname(entrypoint)))
+  const npmRoot = path.join(userPath, path.dirname(entrypoint))
+  await runNpmInstall(npmRoot)
+  const dependencies = await glob('**', npmRoot)
 
   // Create the launcher
   const launcherData = (await readFile(path.join(__dirname, 'launcher.js'), 'utf8')).replace(
@@ -35,6 +37,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   }
 
   // Create the Lambda
+  console.log(Object.keys(dependencies))
   const lambda = await createLambda({
     files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
