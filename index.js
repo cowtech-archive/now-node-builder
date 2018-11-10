@@ -17,9 +17,9 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   console.log('Downloading user files...')
   const downloadedFiles = await download(files, userPath)
 
-  // Install NPM dependencies
+  // Install NPM dependencies - Requires yarn
   console.log('Installing dependencies ...')
-  await runNpmInstall(userRoot, ['--production', '--no-optional'])
+  await runNpmInstall(userRoot, ['--production', '--ignore-optional'])
 
   // Add user prefix to all sources and dependencies
   const filesOnDisk = {}
