@@ -3,11 +3,10 @@ const bridge = new Bridge()
 
 try {
   const fs = require('fs')
-  console.log(process.cwd())
-  console.log(fs.readdirSync(process.cwd()))
 
   process.env.NODE_ENV = 'production'
   process.chdir(`${process.cwd()}/user`)
+  console.log(fs.readdirSync(process.cwd()))
   require('./{{ENTRYPOINT}}')
 } catch (error) {
   console.error(error)
