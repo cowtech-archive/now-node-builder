@@ -12,7 +12,7 @@ const readFile = promisify(fs.readFile)
 exports.build = async ({ files, entrypoint, workPath }) => {
   // Download files
   console.log('downloading user files...')
-  const userPath = path.join(xPath, 'user')
+  const userPath = path.join(workPath, 'user')
   const filesOnDisk = await download(files, userPath)
 
   // Install NPM
