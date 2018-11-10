@@ -1,0 +1,27 @@
+{
+  "name": "@cowtech/now-node-server",
+  "version": "0.1.0",
+  "description": "CowTech Now v2 Node.js server builder.",
+  "main": "index,js",
+  "files": [
+    "index.js",
+    "launcher.js"
+  ],
+  "scripts": {
+    "postpublish": "git push origin && git push origin -f --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cowtech/now-node-server"
+  },
+  "keywords": [],
+  "author": "Shogun <shogun@cowtech.it>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cowtech/now-node-server/issues"
+  },
+  "homepage": "https://github.com/cowtech/now-node-server",
+  "dependencies": {
+    "@now/node-bridge": "^0.1.5"
+  }
+}
