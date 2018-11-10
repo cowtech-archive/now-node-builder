@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.19
+
+* fix: Skip optional dependencies.
+
 ### 2018-11-10 / 0.1.18
 
 * fix: Only install production dependencies.
