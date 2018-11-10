@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.1
+
+* fix: Removed legacy file.
+
 ### 2018-11-10 / 0.1.0
 
 - Initial version.
