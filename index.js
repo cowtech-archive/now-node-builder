@@ -26,7 +26,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   // Create the launcher
   const launcherData = (await readFile(path.join(__dirname, 'launcher.js'), 'utf8')).replace(
     '{{ENTRYPOINT}}',
-    entrypoint
+    entrypoint.replace(/\.js$/, '')
   )
 
   const launcherFiles = {
