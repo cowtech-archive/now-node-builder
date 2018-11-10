@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.15
+
+* test: Include node_modules.
+
 ### 2018-11-10 / 0.1.14
 
 * test: Improve launcher.
