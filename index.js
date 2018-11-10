@@ -35,8 +35,6 @@ exports.build = async ({ files, entrypoint, workPath }) => {
 }
 
 exports.prepareCache = async ({ files, entrypoint, cachePath }) => {
-  await commonForTwo({ files, entrypoint, cachePath })
-
   return {
     ...(await glob('user/node_modules/**', cachePath)),
     ...(await glob('user/package-lock.json', cachePath)),
