@@ -3,11 +3,12 @@ const bridge = new Bridge()
 
 try {
   const fs = require('fs')
+  const workPath = `${process.cwd()}/user`
+  const entrypoint = `${workPath}/{{ENTRYPOINT}}`
 
   process.env.NODE_ENV = 'production'
-  process.chdir(`${process.cwd()}/user`)
-  console.log(fs.readdirSync(process.cwd()))
-  require('./{{ENTRYPOINT}}')
+  process.chdir(workPath)
+  require(entrypoint)
 } catch (error) {
   console.error(error)
   bridge.userError = error
