@@ -10,10 +10,16 @@ const { runNpmInstall, runPackageJsonScript } = require('@now/build-utils/fs/run
 const readFile = promisify(fs.readFile)
 
 exports.build = async ({ files, entrypoint, workPath }) => {
+  // Download files
+  console.log('downloading user files...')
+  const userPath = path.join(xPath, 'user')
+  const filesOnDisk = await download(files, userPath)
+
   // Install NPM
   console.log('Installing dependencies ...')
-  await runNpmInstall(path.join(workPath, path.dirname(entrypoint)))
+  await runNpmInstall(path.join(userPath, path.dirname(entrypoint)))
 
+  // Create the launcher
   let launcherData = await readFile(path.join(__dirname, 'launcher.js'), 'utf8')
   launcherData = launcherData.replace(
     '// PLACEHOLDER',
