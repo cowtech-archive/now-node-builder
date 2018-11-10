@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.5
+
+* test: Improve launcher.
+
 ### 2018-11-10 / 0.1.4
 
 * test: Output downloaded files.
