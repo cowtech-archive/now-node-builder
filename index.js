@@ -23,7 +23,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
 
   // Add user prefix to all sources and dependencies
   const filesOnDisk = {}
-  for (const [fPath, contents] of Object.entriesawait glob('**', userRoot))) filesOnDisk[`user/${fPath}`] = contents
+  for (const [fPath, contents] of Object.entries(await glob('**', userRoot))) filesOnDisk[`user/${fPath}`] = contents
 
   // Create the launcher
   const launcherData = (await readFile(path.join(__dirname, 'launcher.js'), 'utf8')).replace(
