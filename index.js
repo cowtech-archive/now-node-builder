@@ -23,7 +23,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   let launcherData = await readFile(path.join(__dirname, 'launcher.js'), 'utf8')
   launcherData = launcherData.replace(
     '// PLACEHOLDER',
-    ['process.chdir("./user");', `require("./${path.join('user', entrypoint)}");`].join(' ')
+    `process.chdir(\`${process.cwd()}/user\`); require('${entrypoint)}');`
   )
 
   const launcherFiles = {
@@ -31,7 +31,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
     'bridge.js': new FileFsRef({ fsPath: require('@now/node-bridge') })
   }
 
-  console.log({ ...filesOnDisk, ...launcherFiles })
+  console.log(Object.keys(filesOnDisk))
   const lambda = await createLambda({
     files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
