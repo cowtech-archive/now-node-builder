@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.3
+
+* fix: Typo fix.
+
 ### 2018-11-10 / 0.1.2
 
 * fix: Added download step.
