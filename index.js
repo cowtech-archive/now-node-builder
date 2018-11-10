@@ -10,20 +10,20 @@ const { runNpmInstall, runPackageJsonScript } = require('@now/build-utils/fs/run
 const readFile = promisify(fs.readFile)
 
 exports.build = async ({ files, entrypoint, workPath }) => {
-  // Download files
-  console.log('downloading user files...')
   const userPath = path.join(workPath, 'user')
+  const userRoot = path.join(userPath, path.dirname(entrypoint))
+
+  // Download files
+  console.log('Downloading user files...')
   const downloadedFiles = await download(files, userPath)
 
-  // Add user prefix to all sources
-  const filesOnDisk = {}
-  for (const [fPath, contents] of Object.entries(downloadedFiles)) filesOnDisk[`user/${fPath}`] = contents
-
-  // Install NPM
+  // Install NPM dependencies
   console.log('Installing dependencies ...')
-  const npmRoot = path.join(userPath, path.dirname(entrypoint))
-  await runNpmInstall(npmRoot)
-  const dependencies = await glob('**', npmRoot)
+  await runNpmInstall(userRoot)
+
+  // Add user prefix to all sources and dependencies
+  const filesOnDisk = {}
+  for (const [fPath, contents] of Object.entriesawait glob('**', userRoot))) filesOnDisk[`user/${fPath}`] = contents
 
   // Create the launcher
   const launcherData = (await readFile(path.join(__dirname, 'launcher.js'), 'utf8')).replace(
@@ -37,7 +37,7 @@ exports.build = async ({ files, entrypoint, workPath }) => {
   }
 
   // Create the Lambda
-  console.log(Object.keys(dependencies))
+  console.log(Object.keys(filesOnDisk))
   const lambda = await createLambda({
     files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
