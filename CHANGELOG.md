@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.4
+
+* test: Output downloaded files.
+
 ### 2018-11-10 / 0.1.3
 
 * fix: Typo fix.
