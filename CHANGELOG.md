@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.2.2
+
+* fix: Ignore useless files.
+
 ### 2018-11-10 / 0.2.1
 
 * fix: Ignore useless files.
