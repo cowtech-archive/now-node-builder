@@ -1,3 +1,7 @@
+### 2018-11-10 / 0.1.11
+
+* fix: Removed typo.
+
 ### 2018-11-10 / 0.1.10
 
 * test: Improve launcher.
