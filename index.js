@@ -31,8 +31,9 @@ exports.build = async ({ files, entrypoint, workPath }) => {
     'bridge.js': new FileFsRef({ fsPath: require('@now/node-bridge') })
   }
 
+  console.log({ ...filesOnDisk, ...launcherFiles })
   const lambda = await createLambda({
-    files: { ...files, ...launcherFiles },
+    files: { ...filesOnDisk, ...launcherFiles },
     handler: 'launcher.launcher',
     runtime: 'nodejs8.10'
   })
