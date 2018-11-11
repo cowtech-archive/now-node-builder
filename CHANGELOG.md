@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.4.0
+
+* feat: Use a better launcher for Node.js.
+
 ### 2018-11-11 / 0.3.1
 
 * fix: Added required exports.
