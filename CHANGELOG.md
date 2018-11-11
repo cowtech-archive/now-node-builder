@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.4.2
+
+* fix: WIP - Added missing require.
+
 ### 2018-11-11 / 0.4.1
 
 * fix: WIP - Allow dynamic port.
