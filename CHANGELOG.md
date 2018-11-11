@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.4.4
+
+* fix: Setup request options.
+
 ### 2018-11-11 / 0.4.3
 
 * fix: Do not require external dependencies in the launcher.
