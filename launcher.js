@@ -1,6 +1,7 @@
 const fs = require('fs')
 const workPath = `${process.cwd()}/user`
 const entrypoint = `${workPath}/{{ENTRYPOINT}}`
+const got = require('got')
 
 // Setup some environment variables
 process.env.NODE_ENV = 'production'
