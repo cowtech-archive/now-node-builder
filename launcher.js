@@ -1,15 +1,45 @@
 const fs = require('fs')
+const http = require('http')
+
 const workPath = `${process.cwd()}/user`
 const entrypoint = `${workPath}/{{ENTRYPOINT}}`
-const got = require('got')
 
 // Setup some environment variables
 process.env.NODE_ENV = 'production'
-process.env.NOW_DEPLOYMENT = 'true'
 process.chdir(workPath)
 
 // Start the main function and await for it's
 const entryPointInfo = require(entrypoint)
+
+async function forward(port, method, path, request, body) {
+  return new Promise(function(resolve, reject) {
+    const req = http.request(opts, response => {
+      const chunks = []
+
+      // Append response chunks
+      response.on('data', chunk => chunks.push(Buffer.from(chunk)))
+      
+      // Handle errors
+      response.on('error', reject)
+      response.on('end', () =>
+        // Adjust some response parameters
+        delete response.headers.connection
+        delete response.headers['content-length']
+
+        // Return the respnse
+        resolve({
+          statusCode: response.statusCode,
+          headers: response.headers,
+          body: Buffer.concat(chunks).toString('base64'),
+          encoding: 'base64'
+        })
+      })
+    })
+
+    if (body) req.write(body)
+    req.end()
+  })
+}
 
 module.exports.launcher = async function(event) {
   // Parse the event in order to obtain all the required informations, supports both forms used by now
@@ -27,20 +57,7 @@ module.exports.launcher = async function(event) {
   try {
     const url = `http://127.0.0.1:${entryPointInfo.port}${path}`
     console.log(`forwarding to ${url}`)
-    const response = await got(url, { method, headers, body, throwHttpErrors: false })
-
-    // Adjust some response parameters
-    delete response.headers.connection
-    delete response.headers['content-length']
-    if (typeof response.body === 'object') response.body = JSON.stringify(response.body)
-
-    // Return the response of the event
-    return {
-      statusCode: response.statusCode,
-      headers: response.headers,
-      body: Buffer.from(response.body).toString('base64'),
-      encoding: 'base64'
-    }
+    return await forward(port, method, path, headers, body)
   } catch (e) {
     throw e
   }
