@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.4.1
+
+* fix: WIP - Allow dynamic port.
+
 ### 2018-11-11 / 0.4.0
 
 * feat: Use a better launcher for Node.js.
