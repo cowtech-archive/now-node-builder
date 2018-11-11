@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.5.0
+
+* feat: Removed debug line. Version bump.
+
 ### 2018-11-11 / 0.4.6
 
 * fix: Fixed typo.
