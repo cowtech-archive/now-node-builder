@@ -7,8 +7,8 @@ process.env.NODE_ENV = 'production'
 process.env.NOW_DEPLOYMENT = 'true'
 process.chdir(workPath)
 
-// Start the main function
-require(entrypoint)
+// Start the main function and await for it's
+const entryPointInfo = require(entrypoint)
 
 module.exports.launcher = async function(event) {
   // Parse the event in order to obtain all the required informations, supports both forms used by now
@@ -24,7 +24,9 @@ module.exports.launcher = async function(event) {
 
   // Forward the request to localhost
   try {
-    const response = await got(`http://127.0.0.1:${port}${path}`, { method, headers, body, throwHttpErrors: false })
+    const url = `http://127.0.0.1:${entryPointInfo.port}${path}`
+    console.log(`forwarding to ${url}`)
+    const response = await got(url, { method, headers, body, throwHttpErrors: false })
 
     // Adjust some response parameters
     delete response.headers.connection
