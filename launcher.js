@@ -11,7 +11,10 @@ process.chdir(workPath)
 // Start the main function and await for it's
 const entryPointInfo = require(entrypoint)
 
-async function forward(port, method, path, request, body) {
+async function forward(port, method, path, headers, body) {
+  console.log(`forwarding to http://127.0.0.1:${entryPointInfo.port}${path}`)
+  const opts = { hostname: '127.0.0.1', port, method, path, headers }
+
   return new Promise(function(resolve, reject) {
     const req = http.request(opts, response => {
       const chunks = []
@@ -53,10 +56,8 @@ module.exports.launcher = async function(event) {
   if (!method) method = httpMethod
   if (encoding === 'base64') body = Buffer.from(body, encoding)
 
-  // Forward the request to localhost
+  // Forward the request to the server
   try {
-    const url = `http://127.0.0.1:${entryPointInfo.port}${path}`
-    console.log(`forwarding to ${url}`)
     return await forward(port, method, path, headers, body)
   } catch (e) {
     throw e
