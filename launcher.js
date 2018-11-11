@@ -5,4 +5,4 @@ const entrypoint = `${workPath}/{{ENTRYPOINT}}`
 process.env.NODE_ENV = 'production'
 process.env.NOW_DEPLOYMENT = 'true'
 process.chdir(workPath)
-require(entrypoint)
+module.exports.launcher = require(entrypoint)
