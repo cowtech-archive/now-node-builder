@@ -21,10 +21,10 @@ async function forward(port, method, path, headers, body) {
 
       // Append response chunks
       response.on('data', chunk => chunks.push(Buffer.from(chunk)))
-      
+
       // Handle errors
       response.on('error', reject)
-      response.on('end', () =>
+      response.on('end', () => {
         // Adjust some response parameters
         delete response.headers.connection
         delete response.headers['content-length']
