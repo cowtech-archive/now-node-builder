@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.3.1
+
+* fix: Added required exports.
+
 ### 2018-11-11 / 0.3.0
 
 * feat: Remove usage of bridge and delegate control to app.
