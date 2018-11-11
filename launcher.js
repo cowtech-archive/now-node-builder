@@ -12,7 +12,6 @@ process.chdir(workPath)
 const entryPointInfo = require(entrypoint)
 
 async function forward(port, method, path, headers, body) {
-  console.log(`forwarding to http://127.0.0.1:${entryPointInfo.port}${path}`)
   const opts = { hostname: '127.0.0.1', port, method, path, headers }
 
   return new Promise(function(resolve, reject) {
