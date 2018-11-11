@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.4.5
+
+* fix: Fixed typo.
+
 ### 2018-11-11 / 0.4.4
 
 * fix: Setup request options.
