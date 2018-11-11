@@ -1,3 +1,7 @@
+### 2018-11-11 / 0.3.0
+
+* feat: Remove usage of bridge and delegate control to app.
+
 ### 2018-11-10 / 0.2.2
 
 * fix: Ignore useless files.
