@@ -58,7 +58,7 @@ module.exports.launcher = async function(event) {
 
   // Forward the request to the server
   try {
-    return await forward(port, method, path, headers, body)
+    return await forward(entryPointInfo.port, method, path, headers, body)
   } catch (e) {
     throw e
   }
