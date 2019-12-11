@@ -1,11 +1,8 @@
 # @cowtech/now-node-server
 
-[![Package Version](https://img.shields.io/npm/v/@cowtech/now-node-server.svg)](https://npmjs.com/package/@cowtech/now-node-server)
-[![Dependency Status](https://img.shields.io/gemnasium/github.com/cowtech/now-node-server.svg)](https://gemnasium.com/github.com/cowtech/now-node-server)
+## END OF DEVELOPMENT NOTICE - This package has been discontinued
 
 CowTech Now v2 Node.js server builder.
-
-https://github.com/cowtech/now-node-server
 
 # Usage
 
